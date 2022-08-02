@@ -6,47 +6,64 @@
 
     <!--#region Thickness-->
 
-    <Thickness x:Key="LeftAligned">0,5,5,5</Thickness>
+    <Thickness x:Key="LeftTopAligned">0,5,5,5</Thickness>
 
     <!--#endregion-->
 
     <!--#region FontSizes -->
-    
+
     <sys:Double x:Key="SmallFontSize">12</sys:Double>
     <sys:Double x:Key="MediumFontSize">14</sys:Double>
     <sys:Double x:Key="LargeFontSize">18</sys:Double>
     <sys:Double x:Key="XLargeFontSize">22</sys:Double>
-    
-    <!--#endregion-->
 
-    <!--#region Base Styles -->
-    
-    <Style x:Key="BaseTextBlockStyle" TargetType="{x:Type TextBlock}">
-        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
-        <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-    </Style>
-    
     <!--#endregion-->
     
-    <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Margin" Value="{StaticResource LeftAligned}"/>
+    <!--#region Button -->
+    
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="{StaticResource LeftTopAligned}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="Padding" Value="5,0"/>
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
     </Style>
 
-    <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
-        <Setter Property="Margin" Value="{StaticResource LeftAligned}"/>
+    <!--#endregion-->
+    
+    <!--#region Label -->
+    
+    <Style TargetType="{x:Type Label}">
+        <Setter Property="Margin" Value="{StaticResource LeftTopAligned}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
     </Style>
 
-    <Style x:Key="TextValueStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}">
+    <!--#endregion-->
+    
+    <!--#region TextBlock -->
+
+    <Style x:Key="BaseTextBlockStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    </Style>
+    
+    <Style x:Key="TextValueStyle" TargetType="{x:Type TextBlock}" BasedOn="{StaticResource BaseTextBlockStyle}">
         <Setter Property="FontWeight" Value="Bold"/>
     </Style>
+
+    <!--#endregion-->
+
+    <!--#region DataGrid -->
+    
+    <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
+        <Setter Property="Margin" Value="{StaticResource LeftTopAligned}"/>
+        <!--Note alignments better be default Stretch.-->
+     </Style>
+    
+    <!--#endregion-->
 </ResourceDictionary>
