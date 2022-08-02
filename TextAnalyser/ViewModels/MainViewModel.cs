@@ -32,7 +32,7 @@ namespace TextAnalyser.ViewModels
 
         public bool Read(out string message)
         {
-            var initialDirectory = Path.GetFullPath(Directory.GetCurrentDirectory() + "\\..\\..\\..\\..\\..\\Texts");
+            var initialDirectory = Path.GetFullPath(Directory.GetCurrentDirectory() + "\\..\\..\\..\\..\\Texts");
 
             var fileDialog = new OpenFileDialog
             {
