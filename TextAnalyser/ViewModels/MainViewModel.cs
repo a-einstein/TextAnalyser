@@ -5,19 +5,13 @@ using System.Windows.Input;
 using TextAnalyser.Resources;
 using Utilities;
 
-namespace TextAnalyser
+namespace TextAnalyser.ViewModels
 {
-    public partial class MainWindow : Window
+    internal class MainViewModel : DependencyObject
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            DataContext = this;
-        }
-
         private ICommand? readFileCommand;
         public ICommand ReadFileCommand => readFileCommand ?? (readFileCommand = new CommandHandler(ReadFile, () => true));
-      
+
         private bool fileRead;
         private bool FileRead
         {
@@ -65,7 +59,7 @@ namespace TextAnalyser
         }
 
         public static readonly DependencyProperty FileMessageProperty =
-            DependencyProperty.Register(nameof(FileMessage), typeof(string), typeof(MainWindow), new PropertyMetadata("No file yet"));
+            DependencyProperty.Register(nameof(FileMessage), typeof(string), typeof(MainViewModel), new PropertyMetadata("No file yet"));
 
         public string FileMessage
         {
@@ -74,7 +68,7 @@ namespace TextAnalyser
         }
 
         public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register(nameof(Text), typeof(string), typeof(MainWindow), new PropertyMetadata("Read a file or edit."));
+            DependencyProperty.Register(nameof(Text), typeof(string), typeof(MainViewModel), new PropertyMetadata("Read a file or edit."));
 
         public string Text
         {
