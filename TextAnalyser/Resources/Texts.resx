@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AnalyseMessageLabel" xml:space="preserve">
-    <value>Result:</value>
-  </data>
   <data name="AnalyseText" xml:space="preserve">
     <value>Analyse</value>
+  </data>
+  <data name="AnalysisMessageLabel" xml:space="preserve">
+    <value>Result:</value>
+  </data>
+  <data name="AnalysisResult_number" xml:space="preserve">
+    <value>Found {0} addresses.</value>
+  </data>
+  <data name="ClearFirst" xml:space="preserve">
+    <value>Clear first</value>
   </data>
   <data name="FileMessageLabel" xml:space="preserve">
     <value>File:</value>

@@ -22,20 +22,24 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Button Grid.Row="0" Grid.Column="0" Content="{x:Static Resources:Texts.FileReadText}" Command="{Binding ReadFileCommand}"/>
-        <Label Grid.Row="0" Grid.Column="1" Content="{x:Static Resources:Texts.FileMessageLabel}"/>
-        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding FileMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
+        <Label Grid.Row="0" Grid.Column="2" Content="{x:Static Resources:Texts.FileMessageLabel}"/>
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding FileMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
 
-        <TextBox  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{Binding Text}" AcceptsReturn="True"/>
+        <TextBox  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Text}" AcceptsReturn="True"/>
 
         <Button Grid.Row="2" Grid.Column="0" Content="{x:Static Resources:Texts.AnalyseText}" Command="{Binding AnalyseCommand}"/>
-        <Label Grid.Row="2" Grid.Column="1" Content="{x:Static Resources:Texts.AnalyseMessageLabel}"/>
-        <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding AnalyseMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding ClearFirst}" />
+            <Label Content="{x:Static Resources:Texts.ClearFirst}"/>
+        </StackPanel>
+        <Label Grid.Row="2" Grid.Column="2" Content="{x:Static Resources:Texts.AnalysisMessageLabel}"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding AnalysisMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
 
-        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding Adresses}" CanUserAddRows="False">
-        </DataGrid>
+        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" ItemsSource="{Binding Addresses}" CanUserAddRows="False"/>
     </Grid>
 </Window>

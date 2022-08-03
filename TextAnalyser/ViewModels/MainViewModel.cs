@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -74,20 +75,72 @@ namespace TextAnalyser.ViewModels
         #endregion
 
         #region Analysis
+        public static readonly DependencyProperty ClearFirstProperty =
+            DependencyProperty.Register("ClearFirst", typeof(bool), typeof(MainViewModel), new PropertyMetadata(true));
+
+        public bool ClearFirst
+        {
+            get { return (bool)GetValue(ClearFirstProperty); }
+            set { SetValue(ClearFirstProperty, value); }
+        }
+
         private ICommand? analyseCommand;
         public ICommand AnalyseCommand => analyseCommand ?? (analyseCommand = new CommandHandler(Analyse, () => !String.IsNullOrEmpty(Text)));
 
         private void Analyse()
         {
-            throw new NotImplementedException();
+            if (ClearFirst)
+                Addresses.Clear();
+
+            var addressExpression = new Regex(@"(?<street>\w+)\s+(?<number>\d+)([,.]|\s)+(?<code>\d{4}\s*[a-z]{2})([,.]|\s)+(?<town>\w+)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+
+            using (StringReader reader = new StringReader(Text))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    var match = addressExpression.Match(line);
+
+                    if (match.Success)
+                    {
+                        var groups = match.Groups;
+
+                        var streetGroup = groups["street"];
+                        var numberGroup = groups["number"];
+                        var codeGroup = groups["code"];
+                        var townGroup = groups["town"];
+
+                        var address = new Address()
+                        {
+                            Street = streetGroup.Success ? streetGroup.Value : default,
+                            Number = numberGroup.Success ? numberGroup.Value : default,
+                            Code = codeGroup.Success ? codeGroup.Value : default,
+                            Town = townGroup.Success ? townGroup.Value : default
+                        };
+
+                        Addresses.Add(address);
+                    }
+                }
+            }
+
+            AnalysisMessage = string.Format(Texts.AnalysisResult_number, Addresses.Count);
+        }
+
+        public static readonly DependencyProperty AnalysisMessageProperty =
+            DependencyProperty.Register(nameof(AnalysisMessage), typeof(string), typeof(MainViewModel));
+
+        public string AnalysisMessage
+        {
+            get { return (string)GetValue(AnalysisMessageProperty); }
+            set { SetValue(AnalysisMessageProperty, value); }
         }
         #endregion
 
         #region Addresses
         public static readonly DependencyProperty AdressesProperty =
-            DependencyProperty.Register(nameof(Adresses), typeof(ObservableCollection<Address>), typeof(MainViewModel), new PropertyMetadata(new ObservableCollection<Address>()));
+            DependencyProperty.Register(nameof(Addresses), typeof(ObservableCollection<Address>), typeof(MainViewModel), new PropertyMetadata(new ObservableCollection<Address>()));
 
-        public ObservableCollection<Address> Adresses
+        public ObservableCollection<Address> Addresses
         {
             get { return (ObservableCollection<Address>)GetValue(AdressesProperty); }
             set { SetValue(AdressesProperty, value); }

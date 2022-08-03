@@ -28,7 +28,17 @@
         <Setter Property="Padding" Value="5,0"/>
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
     </Style>
+    
+    <!--#endregion-->
 
+    <!--#region CheckBox -->
+    
+    <Style TargetType="{x:Type CheckBox}">
+        <Setter Property="Margin" Value="{StaticResource LeftTopAligned}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+    
     <!--#endregion-->
     
     <!--#region Label -->
