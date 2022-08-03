@@ -92,7 +92,14 @@ namespace TextAnalyser.ViewModels
             if (ClearFirst)
                 Addresses.Clear();
 
-            var addressExpression = new Regex(@"(?<street>\w+)\s+(?<number>\d+)([,.]|\s)+(?<code>\d{4}\s*[a-z]{2})([,.]|\s)+(?<town>\w+)", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            var streetExpr = @"(?<street>\w+)";
+            var spaceExpr = @"\s+";
+            var numberExpr = @"(?<number>\d+)";
+            var separatorExpr = @"([,;]|\s)+";
+            var codeExpr = @"(?<code>\d{4}\s*[a-z]{2})";
+            var townExpr = @"(?<town>\w+)";
+
+            var addressExpression = new Regex($"{streetExpr}{spaceExpr}{numberExpr}{separatorExpr}{codeExpr}{separatorExpr}{townExpr}", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
             using (StringReader reader = new StringReader(Text))
             {
@@ -114,7 +121,7 @@ namespace TextAnalyser.ViewModels
                         {
                             Street = streetGroup.Success ? streetGroup.Value : default,
                             Number = numberGroup.Success ? numberGroup.Value : default,
-                            Code = codeGroup.Success ? codeGroup.Value : default,
+                            Code = codeGroup.Success ? Regex.Replace(codeGroup.Value, spaceExpr, string.Empty) : default,
                             Town = townGroup.Success ? townGroup.Value : default
                         };
 

@@ -34,7 +34,7 @@
     <!--#region CheckBox -->
     
     <Style TargetType="{x:Type CheckBox}">
-        <Setter Property="Margin" Value="{StaticResource LeftTopAligned}"/>
+        <Setter Property="Margin" Value="0,5,0,5"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
@@ -55,6 +55,7 @@
     <!--#region TextBlock -->
 
     <Style x:Key="BaseTextBlockStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="Margin" Value="{StaticResource LeftTopAligned}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="FontSize" Value="{StaticResource MediumFontSize}" />
