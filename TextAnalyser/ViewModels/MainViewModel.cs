@@ -92,14 +92,14 @@ namespace TextAnalyser.ViewModels
             if (ClearFirst)
                 Addresses.Clear();
 
-            var streetExpr = @"(?<street>\w+)";
+            var streetExpr = @"(?<street>(\w|[\-])+)";
             var spaceExpr = @"\s+";
             var numberExpr = @"(?<number>\d+)";
             var connectorExpr = @"([-]|\s)*";
             var additionExpr = @"(?<addition>[a-z]*)";
             var separatorExpr = @"([,;]|\s)+";
             var codeExpr = @"(?<code>\d{4}\s*[a-z]{2})";
-            var townExpr = @"(?<town>\w+)";
+            var townExpr = @"(?<town>(\w|[\-])+)";
 
             var addressExpression = new Regex($"{streetExpr}{spaceExpr}{numberExpr}{connectorExpr}{additionExpr}{separatorExpr}{codeExpr}{separatorExpr}{townExpr}", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
