@@ -124,7 +124,7 @@ namespace TextAnalyser.ViewModels
                         {
                             Street = streetGroup.Success ? streetGroup.Value : default,
                             Number = numberGroup.Success ? numberGroup.Value : default,
-                            Addition = additionGroup.Success ? additionGroup.Value : default,
+                            Addition = additionGroup.Success ? additionGroup.Value.ToUpper() : default,
                             Code = codeGroup.Success ? Regex.Replace(codeGroup.Value, spaceExpr, string.Empty) : default,
                             Town = townGroup.Success ? townGroup.Value : default
                         };
