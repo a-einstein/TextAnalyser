@@ -6,7 +6,8 @@
 
     <!--#region Thickness-->
 
-    <Thickness x:Key="LeftTopAligned">0,5,5,5</Thickness>
+    <Thickness x:Key="LeftTopAligned">0,0,5,5</Thickness>
+    <Thickness x:Key="LeftTopRightAligned">0,0,0,5</Thickness>
 
     <!--#endregion-->
 
@@ -34,7 +35,7 @@
     <!--#region CheckBox -->
     
     <Style TargetType="{x:Type CheckBox}">
-        <Setter Property="Margin" Value="0,5,0,5"/>
+        <Setter Property="Margin" Value="{StaticResource LeftTopRightAligned}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
     </Style>
@@ -68,11 +69,21 @@
     </Style>
 
     <!--#endregion-->
-
+    
+    <!--#region TextBox -->
+    
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="{StaticResource SmallFontSize}" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="AcceptsReturn" Value="True" />
+        <!--Note alignments better be default Stretch.-->
+    </Style>
+    
+    <!--#endregion-->
+    
     <!--#region DataGrid -->
     
-    <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
-        <Setter Property="Margin" Value="{StaticResource LeftTopAligned}"/>
+    <Style TargetType="{x:Type DataGrid}">
         <!--Note alignments better be default Stretch.-->
      </Style>
     

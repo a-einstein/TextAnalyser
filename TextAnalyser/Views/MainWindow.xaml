@@ -4,42 +4,57 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=System.Runtime"
     xmlns:ViewModels="clr-namespace:TextAnalyser.ViewModels"
     xmlns:Resources="clr-namespace:TextAnalyser.Resources"
     mc:Ignorable="d"
     Title="TextAnalyser" Height="450" Width="800"
     d:DataContext="{d:DesignInstance Type=ViewModels:MainViewModel}"
     >
-    
-    <Grid Grid.Row="0" Name="Controls" Margin="10">
+
+    <Grid Margin="10">
+        <Grid.Resources>
+            <sys:Double x:Key="ButtonWidth">60</sys:Double>
+        </Grid.Resources>
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Content="{x:Static Resources:Texts.FileReadText}" Command="{Binding ReadFileCommand}"/>
-        <Label Grid.Row="0" Grid.Column="2" Content="{x:Static Resources:Texts.FileMessageLabel}"/>
-        <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding FileMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Content="{x:Static Resources:Texts.FileReadText}" Command="{Binding ReadFileCommand}" Width="{StaticResource ButtonWidth}"/>
+                <Label Content="{x:Static Resources:Texts.FileMessageLabel}"/>
+                <TextBlock  Text="{Binding FileMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
+            </StackPanel>
 
-        <TextBox  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Text="{Binding Text}" AcceptsReturn="True"/>
+            <TextBox Grid.Row="1"  Text="{Binding Text}"/>
+        </Grid>
 
-        <Button Grid.Row="2" Grid.Column="0" Content="{x:Static Resources:Texts.AnalyseText}" Command="{Binding AnalyseCommand}"/>
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-            <CheckBox IsChecked="{Binding ClearFirst}" />
-            <Label Content="{x:Static Resources:Texts.ClearFirst}"/>
-        </StackPanel>
-        <Label Grid.Row="2" Grid.Column="2" Content="{x:Static Resources:Texts.AnalysisMessageLabel}"/>
-        <TextBlock Grid.Row="2" Grid.Column="3" Text="{Binding AnalysisMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
+        <GridSplitter Grid.Row="1"  Height="5" HorizontalAlignment="Stretch" Margin="0,5"/>
 
-        <DataGrid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" ItemsSource="{Binding Addresses}" CanUserAddRows="False"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Horizontal">
+                <Button Content="{x:Static Resources:Texts.AnalyseText}" Command="{Binding AnalyseCommand}" Width="{StaticResource ButtonWidth}"/>
+                <CheckBox IsChecked="{Binding ClearFirst}" />
+                <Label Content="{x:Static Resources:Texts.ClearFirst}"/>
+                <Label Content="{x:Static Resources:Texts.AnalysisMessageLabel}"/>
+                <TextBlock Text="{Binding AnalysisMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
+            </StackPanel>
+
+            <DataGrid Grid.Row="1" ItemsSource="{Binding Addresses}" CanUserAddRows="False"/>
+        </Grid>
     </Grid>
 </Window>
