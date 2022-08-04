@@ -15,6 +15,7 @@ namespace TextAnalyser.ViewModels
     {
         #region File
         string initialDirectory = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\..\..\Texts");
+        string fileFilter = "TXT files|*.txt";
 
         private ICommand? readFileCommand;
         public ICommand ReadFileCommand => readFileCommand ??= new CommandHandler(ReadFile, () => true);
@@ -24,7 +25,7 @@ namespace TextAnalyser.ViewModels
             var fileDialog = new OpenFileDialog
             {
                 Title = Texts.FileDialogTitle,
-                Filter = "TXT files|*.txt",
+                Filter = fileFilter,
                 InitialDirectory = initialDirectory
             };
 
@@ -47,7 +48,21 @@ namespace TextAnalyser.ViewModels
 
         private void SaveFile()
         {
-            throw new NotImplementedException();
+            var fileDialog = new SaveFileDialog
+            {
+                Title = Texts.FileDialogTitle,
+                Filter = fileFilter,
+                InitialDirectory = initialDirectory
+            };
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var filePath = fileDialog.FileName;
+
+                File.WriteAllText(filePath, Text);
+
+                FileMessage = string.Format(Texts.MessageFileName_name, Path.GetFileName(filePath));
+            }
         }
 
         public static readonly DependencyProperty FileMessageProperty =
