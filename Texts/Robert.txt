@@ -1,0 +1,32 @@
+Basis.
+Delftechpark 37, 2628XJ, Delft
+Computerlaan 1, 1234AB, Lutjebroek
+Electronicaweg 5, 4321BA, Goes
+
+Speel met toevoegingen.
+Delftechpark 37a, 2628XJ, Delft
+Computerlaan 1bb, 1234AB, Lutjebroek
+Electronicaweg 5-C, 4321BA, Goes
+
+Speel met scheidingstekens.
+Delftechpark 37a 2628XJ Delft
+Computerlaan 1bb; 1234AB; Lutjebroek
+Electronicaweg 5-C   4321BA  Goes
+
+Speel met koppeltekens.
+Delftechpark 37a 2628XJ Delft-Zuid
+Computer-laan 1bb; 1234AB; Lutjebroek
+Electronicaweg 5-C   4321BA  Goes
+
+Speel met spaties in codes.
+Delftechpark 37a 2628 XJ Delft-Zuid
+Computer-laan 1bb; 1234  AB; Lutjebroek
+Electronicaweg 5-C   4321   BA  Goes
+
+2-regelig.
+Delftechpark 37a 
+2628 XJ Delft-Zuid
+Computer-laan 1bb; 
+1234  AB; Lutjebroek
+Electronicaweg 5-C   
+4321   BA  Goes
