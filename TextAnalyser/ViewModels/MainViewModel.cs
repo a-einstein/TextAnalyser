@@ -135,10 +135,12 @@ namespace TextAnalyser.ViewModels
                     var codeGroup = groups["code"];
                     var townGroup = groups["town"];
 
+                    int parsedInt;
+
                     var address = new Address()
                     {
                         Street = streetGroup.Success ? streetGroup.Value : default,
-                        Number = numberGroup.Success ? numberGroup.Value : default,
+                        Number = numberGroup.Success && int.TryParse(numberGroup.Value, out parsedInt) ? parsedInt : default,
                         Addition = additionGroup.Success ? additionGroup.Value.ToUpper() : default,
                         Code = codeGroup.Success ? Regex.Replace(codeGroup.Value, spaceExpr, string.Empty) : default,
                         Town = townGroup.Success ? townGroup.Value : default

@@ -2,10 +2,10 @@
 {
     internal class Address
     {
-        //TODO Strings are already nullable
+        // Note the strings need to be nullable reference types, since C# 8.0.
+
         public string? Street { get; set; }
-        //TODO Int?
-        public string? Number { get; set; }
+        public int? Number { get; set; }
         public string? Addition { get; set; }
         public string? Code { get; set; }
         public string? Town { get; set; }
