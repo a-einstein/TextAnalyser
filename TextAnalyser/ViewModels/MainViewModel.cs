@@ -104,7 +104,8 @@ namespace TextAnalyser.ViewModels
             if (ClearFirst)
                 Addresses.Clear();
 
-            var streetExpr = @"(?<street>(\w|[\-])+)";
+            var startExpr = @"^\s*"; // Assume to start on separate line.
+            var streetExpr = @"(?<street>(\w|[\- ])+)";
             var spaceExpr = @"\s+";
             var numberExpr = @"(?<number>\d+)";
             var connectorExpr = @"([-]|\s)*"; // Optional connector.
@@ -112,11 +113,12 @@ namespace TextAnalyser.ViewModels
             var breakExpr = @"([,;]|\s|\r?$)+"; // Enables line breaks, effectively 2 line addresses.
             var codeExpr = @"(?<code>\d{4}\s*[a-z]{2})";
             var separatorExpr = @"([,;]|\s)+"; // Some required separation.
-            var townExpr = @"(?<town>(\w|[\-])+)";
+            var townExpr = @"(?<town>(\w|[\- ])+)";
+            var stopExpr = @"\r?$"; // Assume to end on separate line.
 
             // Note this assumes a COMPLETE address with some tolerance in the format.
             var addressExpression = new Regex(
-                $"{streetExpr}{spaceExpr}{numberExpr}{connectorExpr}{additionExpr}{breakExpr}{codeExpr}{separatorExpr}{townExpr}",
+                $"{startExpr}{streetExpr}{spaceExpr}{numberExpr}{connectorExpr}{additionExpr}{breakExpr}{codeExpr}{separatorExpr}{townExpr}{stopExpr}",
                 RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
             var matches = addressExpression.Matches(Text);

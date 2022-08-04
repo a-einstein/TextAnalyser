@@ -13,9 +13,9 @@ Delftechpark 37a 2628XJ Delft
 Computerlaan 1bb; 1234AB; Lutjebroek
 Electronicaweg 5-C   4321BA  Goes
 
-Speel met koppeltekens.
-Delftechpark 37a 2628XJ Delft-Zuid
-Computer-laan 1bb; 1234AB; Lutjebroek
+Speel met koppeltekens en spaties in namen.
+Delftech-park 37a 2628XJ Delft-Zuid
+Computer- en monitor-laan 1bb; 1234AB; Groot Lutjebroek
 Electronicaweg 5-C   4321BA  Goes
 
 Speel met spaties in codes.
