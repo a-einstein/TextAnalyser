@@ -129,16 +129,22 @@
   <data name="ClearFirst" xml:space="preserve">
     <value>Clear first</value>
   </data>
+  <data name="FileDialogTitle" xml:space="preserve">
+    <value>Select file</value>
+  </data>
   <data name="FileMessageLabel" xml:space="preserve">
     <value>File:</value>
   </data>
   <data name="FileReadText" xml:space="preserve">
     <value>Read</value>
   </data>
-  <data name="FileReadTitle" xml:space="preserve">
-    <value>Read File</value>
+  <data name="FileSaveText" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="MessageFileName_name" xml:space="preserve">
     <value>'{0}'</value>
+  </data>
+  <data name="MessageNoFile" xml:space="preserve">
+    <value>No file read.</value>
   </data>
 </root>

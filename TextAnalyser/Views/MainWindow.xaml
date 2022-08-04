@@ -16,7 +16,7 @@
         <Grid.Resources>
             <sys:Double x:Key="ButtonWidth">60</sys:Double>
         </Grid.Resources>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -32,7 +32,8 @@
             <StackPanel Grid.Row="0" Orientation="Horizontal">
                 <Button Content="{x:Static Resources:Texts.FileReadText}" Command="{Binding ReadFileCommand}" Width="{StaticResource ButtonWidth}"/>
                 <Label Content="{x:Static Resources:Texts.FileMessageLabel}"/>
-                <TextBlock  Text="{Binding FileMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
+                <TextBlock Text="{Binding FileMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
+                <Button Content="{x:Static Resources:Texts.FileSaveText}" Command="{Binding SaveFileCommand}" Width="{StaticResource ButtonWidth}"/>
             </StackPanel>
 
             <TextBox Grid.Row="1"  Text="{Binding Text}"/>

@@ -14,24 +14,16 @@ namespace TextAnalyser.ViewModels
     internal class MainViewModel : DependencyObject
     {
         #region File
+        string initialDirectory = Path.GetFullPath(Directory.GetCurrentDirectory() + @"\..\..\..\..\Texts");
+
         private ICommand? readFileCommand;
         public ICommand ReadFileCommand => readFileCommand ??= new CommandHandler(ReadFile, () => true);
 
         private void ReadFile()
         {
-            string fileMessage; ;
-
-            Read(out fileMessage);
-            FileMessage = fileMessage;
-        }
-
-        public bool Read(out string message)
-        {
-            var initialDirectory = Path.GetFullPath(Directory.GetCurrentDirectory() + "\\..\\..\\..\\..\\Texts");
-
             var fileDialog = new OpenFileDialog
             {
-                Title = Texts.FileReadTitle,
+                Title = Texts.FileDialogTitle,
                 Filter = "TXT files|*.txt",
                 InitialDirectory = initialDirectory
             };
@@ -40,17 +32,22 @@ namespace TextAnalyser.ViewModels
             {
                 var filePath = fileDialog.FileName;
 
-                message = string.Format(Texts.MessageFileName_name, Path.GetFileName(filePath));
+                FileMessage = string.Format(Texts.MessageFileName_name, Path.GetFileName(filePath));
 
                 Text = File.ReadAllText(filePath);
-
-                return true;
             }
             else
             {
-                message = "No file read.";
-                return false;
+                FileMessage = Texts.MessageNoFile;
             }
+        }
+
+        private ICommand? saveFileCommand;
+        public ICommand SaveFileCommand => saveFileCommand ??= new CommandHandler(SaveFile, () => !String.IsNullOrEmpty(Text));
+
+        private void SaveFile()
+        {
+            throw new NotImplementedException();
         }
 
         public static readonly DependencyProperty FileMessageProperty =
@@ -97,14 +94,14 @@ namespace TextAnalyser.ViewModels
             var numberExpr = @"(?<number>\d+)";
             var connectorExpr = @"([-]|\s)*"; // Optional connector.
             var additionExpr = @"(?<addition>[a-z]*)"; // Optional addition.
-            var breakExpr= @"([,;]|\s|\r?$)+"; // Enables line breaks, effectively 2 line addresses.
+            var breakExpr = @"([,;]|\s|\r?$)+"; // Enables line breaks, effectively 2 line addresses.
             var codeExpr = @"(?<code>\d{4}\s*[a-z]{2})";
             var separatorExpr = @"([,;]|\s)+"; // Some required separation.
             var townExpr = @"(?<town>(\w|[\-])+)";
 
             // Note this assumes a COMPLETE address with some tolerance in the format.
             var addressExpression = new Regex(
-                $"{streetExpr}{spaceExpr}{numberExpr}{connectorExpr}{additionExpr}{breakExpr}{codeExpr}{separatorExpr}{townExpr}", 
+                $"{streetExpr}{spaceExpr}{numberExpr}{connectorExpr}{additionExpr}{breakExpr}{codeExpr}{separatorExpr}{townExpr}",
                 RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
             var matches = addressExpression.Matches(Text);
