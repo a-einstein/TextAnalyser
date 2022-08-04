@@ -15,7 +15,7 @@ namespace TextAnalyser.ViewModels
     {
         #region File
         private ICommand? readFileCommand;
-        public ICommand ReadFileCommand => readFileCommand ?? (readFileCommand = new CommandHandler(ReadFile, () => true));
+        public ICommand ReadFileCommand => readFileCommand ??= new CommandHandler(ReadFile, () => true);
 
         private void ReadFile()
         {
@@ -36,7 +36,7 @@ namespace TextAnalyser.ViewModels
                 InitialDirectory = initialDirectory
             };
 
-            if (fileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 var filePath = fileDialog.FileName;
 
@@ -85,7 +85,7 @@ namespace TextAnalyser.ViewModels
         }
 
         private ICommand? analyseCommand;
-        public ICommand AnalyseCommand => analyseCommand ?? (analyseCommand = new CommandHandler(Analyse, () => !String.IsNullOrEmpty(Text)));
+        public ICommand AnalyseCommand => analyseCommand ??= new CommandHandler(Analyse, () => !String.IsNullOrEmpty(Text));
 
         private void Analyse()
         {
