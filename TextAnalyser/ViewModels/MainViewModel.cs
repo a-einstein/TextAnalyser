@@ -95,11 +95,11 @@ namespace TextAnalyser.ViewModels
             var streetExpr = @"(?<street>(\w|[\-])+)";
             var spaceExpr = @"\s+";
             var numberExpr = @"(?<number>\d+)";
-            var connectorExpr = @"([-]|\s)*";
-            var additionExpr = @"(?<addition>[a-z]*)";
+            var connectorExpr = @"([-]|\s)*"; // Optional connector.
+            var additionExpr = @"(?<addition>[a-z]*)"; // Optional addition.
             var breakExpr= @"([,;]|\s|\r?$)+"; // Enables line breaks, effectively 2 line addresses.
             var codeExpr = @"(?<code>\d{4}\s*[a-z]{2})";
-            var separatorExpr = @"([,;]|\s)+";
+            var separatorExpr = @"([,;]|\s)+"; // Some required separation.
             var townExpr = @"(?<town>(\w|[\-])+)";
 
             // Note this assumes a COMPLETE address with some tolerance in the format.
