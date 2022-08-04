@@ -97,40 +97,40 @@ namespace TextAnalyser.ViewModels
             var numberExpr = @"(?<number>\d+)";
             var connectorExpr = @"([-]|\s)*";
             var additionExpr = @"(?<addition>[a-z]*)";
-            var separatorExpr = @"([,;]|\s)+";
+            var breakExpr= @"([,;]|\s|\r?$)+"; // Enables line breaks, effectively 2 line addresses.
             var codeExpr = @"(?<code>\d{4}\s*[a-z]{2})";
+            var separatorExpr = @"([,;]|\s)+";
             var townExpr = @"(?<town>(\w|[\-])+)";
 
-            var addressExpression = new Regex($"{streetExpr}{spaceExpr}{numberExpr}{connectorExpr}{additionExpr}{separatorExpr}{codeExpr}{separatorExpr}{townExpr}", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            // Note this assumes a COMPLETE address with some tolerance in the format.
+            var addressExpression = new Regex(
+                $"{streetExpr}{spaceExpr}{numberExpr}{connectorExpr}{additionExpr}{breakExpr}{codeExpr}{separatorExpr}{townExpr}", 
+                RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-            using (StringReader reader = new StringReader(Text))
+            var matches = addressExpression.Matches(Text);
+
+            foreach (Match match in matches)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                if (match.Success)
                 {
-                    var match = addressExpression.Match(line);
+                    var groups = match.Groups;
 
-                    if (match.Success)
+                    var streetGroup = groups["street"];
+                    var numberGroup = groups["number"];
+                    var additionGroup = groups["addition"];
+                    var codeGroup = groups["code"];
+                    var townGroup = groups["town"];
+
+                    var address = new Address()
                     {
-                        var groups = match.Groups;
+                        Street = streetGroup.Success ? streetGroup.Value : default,
+                        Number = numberGroup.Success ? numberGroup.Value : default,
+                        Addition = additionGroup.Success ? additionGroup.Value.ToUpper() : default,
+                        Code = codeGroup.Success ? Regex.Replace(codeGroup.Value, spaceExpr, string.Empty) : default,
+                        Town = townGroup.Success ? townGroup.Value : default
+                    };
 
-                        var streetGroup = groups["street"];
-                        var numberGroup = groups["number"];
-                        var additionGroup = groups["addition"];
-                        var codeGroup = groups["code"];
-                        var townGroup = groups["town"];
-
-                        var address = new Address()
-                        {
-                            Street = streetGroup.Success ? streetGroup.Value : default,
-                            Number = numberGroup.Success ? numberGroup.Value : default,
-                            Addition = additionGroup.Success ? additionGroup.Value.ToUpper() : default,
-                            Code = codeGroup.Success ? Regex.Replace(codeGroup.Value, spaceExpr, string.Empty) : default,
-                            Town = townGroup.Success ? townGroup.Value : default
-                        };
-
-                        Addresses.Add(address);
-                    }
+                    Addresses.Add(address);
                 }
             }
 
