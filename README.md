@@ -8,9 +8,12 @@ Core functionality is extraction of Dutch addresses from texts by means of regul
 * WPF.
 * C# + XAML.
 * MVVM.
+* Command based enablement.
 * Single language resources.
 * Basic styling.
 * Regular expressions.
+
+![](example.JPG)
 
 #### Basic usage steps
 * Read a text file. Some examples included.
@@ -19,3 +22,5 @@ Core functionality is extraction of Dutch addresses from texts by means of regul
 * Press 'Analyse' to see result of analysis.
 * Optionally keep previous results for comparison, by deselecting 'Clear first'.
 * Optionaly sort the result on some column.
+* Optionally change the window diemensions.
+* Optionally change the ration between the 2 views.
