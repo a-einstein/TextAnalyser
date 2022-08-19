@@ -21,6 +21,6 @@ Core functionality is extraction of Dutch addresses from texts by means of regul
 * Optionally save the result for later use by the 'Save' button..
 * Press 'Analyse' to see result of analysis.
 * Optionally keep previous results for comparison, by deselecting 'Clear first'.
-* Optionaly sort the result on some column.
-* Optionally change the window diemensions.
+* Optionally sort the result on some column.
+* Optionally change the window dimensions.
 * Optionally change the ration between the 2 views.
