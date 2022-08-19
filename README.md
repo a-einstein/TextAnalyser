@@ -23,4 +23,4 @@ Core functionality is extraction of Dutch addresses from texts by means of regul
 * Optionally keep previous results for comparison, by deselecting 'Clear first'.
 * Optionally sort the result on some column.
 * Optionally change the window dimensions.
-* Optionally change the ration between the 2 views.
+* Optionally change the ratio between the 2 views.
