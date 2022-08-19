@@ -68,7 +68,7 @@ namespace TextAnalyser.ViewModels
         public static readonly DependencyProperty FileMessageProperty =
             DependencyProperty.Register(nameof(FileMessage), typeof(string), typeof(MainViewModel), new PropertyMetadata("Read a file or edit."));
 
-        public string FileMessage
+        public string? FileMessage
         {
             get { return (string)GetValue(FileMessageProperty); }
             set { SetValue(FileMessageProperty, value); }
@@ -76,10 +76,13 @@ namespace TextAnalyser.ViewModels
         #endregion
 
         #region Text
+        private ICommand? clearCommand;
+        public ICommand ClearCommand => clearCommand ??= new CommandHandler(() => { Text = default; FileMessage = default; }, () => !String.IsNullOrEmpty(Text));
+
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register(nameof(Text), typeof(string), typeof(MainViewModel));
 
-        public string Text
+        public string? Text
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }

@@ -33,6 +33,7 @@
                 <Button Content="{x:Static Resources:Texts.FileReadText}" Command="{Binding ReadFileCommand}" Width="{StaticResource ButtonWidth}"/>
                 <Label Content="{x:Static Resources:Texts.FileMessageLabel}"/>
                 <TextBlock Text="{Binding FileMessage, Mode=OneWay}" Style="{StaticResource TextValueStyle}" />
+                <Button Content="{x:Static Resources:Texts.ClearLabel}" Command="{Binding ClearCommand}" Width="{StaticResource ButtonWidth}"/>
                 <Button Content="{x:Static Resources:Texts.FileSaveText}" Command="{Binding SaveFileCommand}" Width="{StaticResource ButtonWidth}"/>
             </StackPanel>
 
