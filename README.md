@@ -18,6 +18,7 @@ Core functionality is extraction of Dutch addresses from texts by means of regul
 #### Basic usage steps
 * Read a text file. Some examples included.
 * Optionally edit the text in the upper view for experimentation.
+* Optionally clear the text by the 'Clear' button.
 * Optionally save the result for later use by the 'Save' button..
 * Press 'Analyse' to see result of analysis.
 * Optionally keep previous results for comparison, by deselecting 'Clear first'.
